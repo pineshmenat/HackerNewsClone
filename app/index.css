@@ -1,0 +1,69 @@
+html,
+body,
+#app {
+    margin: 0;
+    height: 100vh;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif, "Open Sans";
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.dark {
+    color: #DADADA;
+    background: #1c2022;
+    min-height: 100%;
+}
+
+.news {
+    margin: 30px auto;
+}
+
+.title {
+    margin: 0 auto;
+}
+
+.title > a {
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(187, 46, 31);
+}
+
+.subtitle {
+    color: gray;
+    margin: 0 auto;
+}
+
+.nav {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: larger;
+    color: rgb(187, 46, 31);
+    padding-inline-start: 40px;
+    margin: 0px;
+    position: relative;
+}
+
+.nav > li {
+    display: inline;
+    margin: 0 10px 0 0;
+}
+
+.nav button {
+    position: absolute;
+    right: 10px;
+    font-size: larger;
+    border: none;
+    background: transparent;
+}
+
+.nav-link {
+    text-decoration: none;
+    
+}
