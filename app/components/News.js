@@ -18,7 +18,6 @@ export default class News extends React.Component {
         const {newsID} = this.props;
         fetchNewsById({newsID})
         .then(({id, url, title, by, time, descendants}) => {
-            // console.log(time);
             this.setState({
                 id,
                 url,
@@ -31,21 +30,13 @@ export default class News extends React.Component {
         })
         .catch((error) => this.setState({error, isLoading: false}))
     }
-
-    shouldComponentUpdate(nextProps, nextState) {
-
-        console.log(!this.state.isLoading && nextProps.newsID !== this.props.newsID);
-        return true; 
-
-    }    
     
     render() {
         const {id, url, title, by, time, descendants, isLoading, error} = this.state;
-        // console.log(id);
         return(
             <React.Fragment>
                 {isLoading ? <p>Loading...</p> : error ? <p>{Error.message}</p> : (
-                    <li>
+                    <li className="nav-li">
                     {title && 
                         <div className="news">
                             <p className="title"><a href={url}>{title}</a></p>

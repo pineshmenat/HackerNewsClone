@@ -2,7 +2,7 @@ import React from 'react'
 import News from './News'
 import {fetchNewsIDsByType} from '../util/api.js'
 
-export default class TopNews extends React.Component {
+export default class NewNews extends React.Component {
     state = {
         newsIDs: [],
         isLoading: true,
@@ -10,7 +10,7 @@ export default class TopNews extends React.Component {
     }
 
     componentDidMount() {
-        fetchNewsIDsByType("top")
+        fetchNewsIDsByType("new")
         .then((newsIDs) => this.setState({newsIDs, isLoading: false}))
         .catch((error) => this.setState({error, isLoading: false}))
     }

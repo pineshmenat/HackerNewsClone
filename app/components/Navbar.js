@@ -8,8 +8,7 @@ const activeStyle = {
 export default function Navbar() {
     return(
         <ThemeConsumer>
-            {({theme, toggleTheme}) => {
-                return(
+            {({theme, toggleTheme}) => (
                 <ul className="nav">
                     <li><NavLink  exact activeStyle={activeStyle} className="nav-link" to="/">Top</NavLink></li>
                     <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/new">New</NavLink></li>
@@ -17,8 +16,7 @@ export default function Navbar() {
                         {(theme === "dark") ? '💡':'🔦'}
                     </button>
                 </ul>
-            )
-            }}
+            )}
         </ThemeConsumer>
     )
 }

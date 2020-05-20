@@ -25,6 +25,10 @@ body {
     margin: 30px auto;
 }
 
+.nav-li {
+    list-style-type: none;
+}
+
 .title {
     margin: 0 auto;
 }
