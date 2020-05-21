@@ -10,7 +10,8 @@ export default class TopNews extends React.Component {
     }
 
     componentDidMount() {
-        fetchNewsIDsByType("top")
+        const {type} = this.props;
+        fetchNewsIDsByType(type)
         .then((newsIDs) => this.setState({newsIDs, isLoading: false}))
         .catch((error) => this.setState({error, isLoading: false}))
     }

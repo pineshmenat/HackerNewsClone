@@ -1,5 +1,8 @@
 import React from 'react'
 import {fetchNewsById} from '../util/api'
+import {Link} from 'react-router-dom'
+import Subtitle from './Subtitle'
+import {formatDate} from '../util/helpers'
 
 export default class News extends React.Component {
 
@@ -16,14 +19,14 @@ export default class News extends React.Component {
 
     componentDidMount() {
         const {newsID} = this.props;
-        fetchNewsById({newsID})
+        fetchNewsById(newsID)
         .then(({id, url, title, by, time, descendants}) => {
             this.setState({
                 id,
                 url,
                 title,
                 by,
-                time: new Date(time).toLocaleString(),
+                time: formatDate(time),
                 descendants: descendants,
                 isLoading: false
             })
@@ -35,12 +38,12 @@ export default class News extends React.Component {
         const {id, url, title, by, time, descendants, isLoading, error} = this.state;
         return(
             <React.Fragment>
-                {isLoading ? <p>Loading...</p> : error ? <p>{Error.message}</p> : (
+                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
                     <li className="nav-li">
                     {title && 
                         <div className="news">
                             <p className="title"><a href={url}>{title}</a></p>
-                            <p className="subtitle">{`by ${by} on ${time} with ${descendants} comments`}</p>
+                            <Subtitle id={id} by={by} time={time} descendants={descendants}/>
                         </div>}
                     </li>
                 )}
