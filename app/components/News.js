@@ -39,7 +39,7 @@ export default class News extends React.Component {
         return(
             <React.Fragment>
                 {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                    <li className="nav-li">
+                    <li className="news-li">
                     {title && 
                         <div className="news">
                             <p className="title"><a href={url}>{title}</a></p>

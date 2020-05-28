@@ -4,7 +4,7 @@ import {fetchNewsById} from '../util/api'
 import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
-
+import {ThemeConsumer} from '../context/theme'
 export default class Post extends React.Component {
     state = {
         id: null,
@@ -41,20 +41,22 @@ export default class Post extends React.Component {
     render() {
         const {id, url, title, by, time, kids, descendants, isLoading, error} = this.state;
         return(
-            <React.Fragment>
-            {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                title && 
-                        <ul>
-                            <li className="post-title">
-                                <p className="h2"><a href={url}>{title}</a></p>
-                                <Subtitle id={id} by={by} time={time} descendants={descendants}/>
-                            </li>
-                            {kids.map((id) => (
-                                <Comment id={id} key={id}/>
-                            ))}
-                        </ul>
-            )}
-        </React.Fragment>
+            <ThemeConsumer>
+            {(theme) => {
+                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                    title && 
+                            <ul>
+                                <li className="post-title">
+                                    <p className="h2"><a href={url}>{title}</a></p>
+                                    <Subtitle id={id} by={by} time={time} descendants={descendants}/>
+                                </li>
+                                {kids.map((id) => (
+                                    <Comment id={id} key={id}/>
+                                ))}
+                            </ul>
+                )} 
+            }}
+        </ThemeConsumer>
         )
     }
 }

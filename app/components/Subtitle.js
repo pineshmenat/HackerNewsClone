@@ -27,5 +27,5 @@ Subtitle.propTypes = {
     id: PropTypes.number.isRequired,
     by: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    descendants: PropTypes.number.isRequired
+    descendants: PropTypes.number
 }

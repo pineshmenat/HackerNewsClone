@@ -10,7 +10,16 @@ export default class TopNews extends React.Component {
     }
 
     componentDidMount() {
+        this.handlefetch();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.type !== this.props.type) this.handlefetch();
+    }
+
+    handlefetch() {
         const {type} = this.props;
+        console.log(type);
         fetchNewsIDsByType(type)
         .then((newsIDs) => this.setState({newsIDs, isLoading: false}))
         .catch((error) => this.setState({error, isLoading: false}))

@@ -4,6 +4,7 @@ import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import './index.css';
 import {ThemeProvider} from './context/theme'
+
 const TopNews = React.lazy(()=> import('./components/TopNews'));
 const Post = React.lazy(() => import('./components/Post'));
 const User = React.lazy(()=> import('./components/User'));
@@ -27,8 +28,8 @@ class App extends React.Component {
                             <Navbar/>
                             <React.Suspense fallback={<p>Loading...</p>}>
                                 <Switch>
-                                    <Route exact path="/" render={()=> <TopNews type={"top"}/>}/>
-                                    <Route path="/new" render={()=> <TopNews type={"new"}/>}/>
+                                    <Route exact path="/" render={()=> <TopNews type="top"/> }/>
+                                    <Route path="/new" render={()=> <TopNews type="new"/>} />
                                     <Route path="/user" component={User}/>
                                     <Route path="/post" component={Post}/>
                                 </Switch>

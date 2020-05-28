@@ -41,7 +41,7 @@ export default class User extends React.Component {
                             <li className="user-title">
                                 <h2>{id}</h2>
                                 {/* <Subtitle id={id} by={by} time={time} descendants={descendants}/> */}
-                                <p className="subtitle">{`joined`} <b>${created}</b> {`has`} <b>${karma}</b> {`karma`}</p>
+                                <p className="subtitle">{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
                                 <h2>Posts</h2>
                             </li>
                             {submitted.map((id) => (
