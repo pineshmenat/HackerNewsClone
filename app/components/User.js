@@ -1,6 +1,7 @@
 import React from 'react';
 import queryString from 'query-string'
 import {fetchPostsByUser} from '../util/api'
+import {formatDate} from '../util/helpers'
 import Subtitle from './Subtitle'
 import News from './News'
 
@@ -22,7 +23,7 @@ export default class User extends React.Component {
                 id,
                 karma,
                 submitted,
-                created: new Date(created).toLocaleString(),
+                created: formatDate(created),
                 isLoading: false
             })
         })
