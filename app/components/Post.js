@@ -20,7 +20,7 @@ export default class Post extends React.Component {
 
     componentDidMount() {
         const {id} = queryString.parse(this.props.location.search);
-        console.log("id: ", id);
+        console.log("POST:  id: ", id);
         fetchNewsById(id)
         .then(({id, url, title, by, time, kids, descendants}) => {
             this.setState({
@@ -42,20 +42,20 @@ export default class Post extends React.Component {
         const {id, url, title, by, time, kids, descendants, isLoading, error} = this.state;
         return(
             <ThemeConsumer>
-            {(theme) => {
-                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                    title && 
-                            <ul>
-                                <li className="post-title">
-                                    <p className="h2"><a href={url}>{title}</a></p>
-                                    <Subtitle id={id} by={by} time={time} descendants={descendants}/>
-                                </li>
-                                {kids.map((id) => (
-                                    <Comment id={id} key={id}/>
-                                ))}
-                            </ul>
-                )} 
-            }}
+            {({theme}) => (
+                isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                    <ul>
+                        <li className="post-title">
+                            <p className="h2"><a href={url}>{title}</a></p>
+                            <Subtitle id={id} by={by} time={time} descendants={descendants}/>
+                        </li>
+                        {kids.map((id) => (
+                            <Comment id={id} key={id}/>
+                        ))}
+                    </ul>
+                )
+            )
+            }
         </ThemeConsumer>
         )
     }
