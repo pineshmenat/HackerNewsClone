@@ -1,0 +1,16 @@
+{
+    "short_name": "Hacker News",
+    "name": "Hacker News Clone by Pinesh Menat",
+    "icons": [
+      {
+        "src": "icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "prefer_related_applications": false
+}

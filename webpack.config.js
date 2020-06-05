@@ -19,7 +19,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'app/index.html'
         }),
-        new CopyWebpackPlugin([{from: '_redirects'}, {from: 'app/favicon.png'}])
+        new CopyWebpackPlugin([{from: '_redirects'}, {from: 'app/manifest.json'}, {from: 'app/icons-512.png'}, {from: 'app/favicon.png'}, {from: 'app/worker.js'}])
     ],
     devServer: {
         historyApiFallback: true

@@ -4,6 +4,7 @@ import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import './index.css';
 import {ThemeProvider} from './context/theme'
+import * as serviceWorker from './worker';
 
 const NewsList = React.lazy(()=> import('./components/NewsList'));
 const Post = React.lazy(() => import('./components/Post'));
@@ -46,3 +47,4 @@ ReactDOM.render(
     <App/>,
     document.getElementById('app')
 )
+serviceWorker.register();
