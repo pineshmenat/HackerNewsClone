@@ -44,11 +44,13 @@ export default class Post extends React.Component {
             <ThemeConsumer>
             {({theme}) => (
                 isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                    title && 
                     <ul>
-                        <li className="post-title">
-                            <p className="h2"><a href={url}>{title}</a></p>
-                            <Subtitle id={id} by={by} time={time} descendants={descendants}/>
+                        <li className="nav">
+                            <h1 style={{marginBottom: "5px"}}><a className="link" target="_blank" href={url}>{title}</a></h1>
+                            <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                         </li>
+                        <p></p>
                         {kids.map((id) => (
                             <Comment id={id} key={id}/>
                         ))}

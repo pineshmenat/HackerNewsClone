@@ -28,7 +28,7 @@ export function fetchCommentsById(commentId) {
 export function fetchPostsByUser(userId) {
     return fetch(`https://hacker-news.firebaseio.com/v0/user/${userId}.json?print=pretty`)
     .then((res) => res.json())
-    .then((user) => {
-        return user;
+    .then((posts) => {
+        return (posts.length > 0) ? posts.slice(0,50): posts;
     });
 }

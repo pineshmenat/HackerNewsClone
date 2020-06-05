@@ -2,6 +2,7 @@ import React from 'react';
 import {fetchCommentsById} from '../util/api'
 import {Link} from 'react-router-dom'
 import {formatDate} from '../util/helpers'
+import { ThemeConsumer } from '../context/theme';
 
 export default class Comment extends React.Component {
     state = {
@@ -33,27 +34,27 @@ export default class Comment extends React.Component {
     render() {
         const {by, id, text, time, isLoading, error} = this.state;
         return(
-            <React.Fragment>
-            {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                <li className="nav-li">
-                    {text && 
-                        <div className="comment">
-                            <p className="subtitle">
-                                {"by "}
-                                <Link to={{
-                                    pathname: "/user",
-                                    search: `?id=${by}`
-                                }}>
-                                    {by}
-                                </Link>
-                                {` on ${time}`}
-                            </p>
-                            <div dangerouslySetInnerHTML={{__html: text}}/>
-                        </div>
-                    }
-                </li>
-            )}
-        </React.Fragment>
+            <ThemeConsumer>
+                {({theme}) => (
+                    <React.Fragment>
+                        {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                            <li className="comment">
+                                <div className={`subtitle-${theme}`}>
+                                    {"by "}
+                                    <Link to={{
+                                        pathname: "/user",
+                                        search: `?id=${by}`
+                                    }}>
+                                        {by}
+                                    </Link>
+                                    {` on ${time}`}
+                                </div>
+                                <p dangerouslySetInnerHTML={{__html: text}}></p>
+                            </li>
+                        )}
+                    </React.Fragment>
+                )}
+            </ThemeConsumer>
         )
     }
 }

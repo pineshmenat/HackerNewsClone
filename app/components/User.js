@@ -4,6 +4,7 @@ import {fetchPostsByUser} from '../util/api'
 import {formatDate} from '../util/helpers'
 import Subtitle from './Subtitle'
 import News from './News'
+import {ThemeConsumer} from '../context/theme'
 
 export default class User extends React.Component {
     state = {
@@ -35,22 +36,24 @@ export default class User extends React.Component {
         const {id, karma, submitted, created, isLoading, error} = this.state;
         console.log(submitted);
         return(
-            <React.Fragment>
-            {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                karma && 
-                        <ul>
-                            <li className="user-title">
-                                <h2>{id}</h2>
-                                {/* <Subtitle id={id} by={by} time={time} descendants={descendants}/> */}
-                                <p className="subtitle">{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
-                                <h2>Posts</h2>
-                            </li>
-                            {submitted.map((id) => (
-                                <News newsID={id} key={id}/>
-                            ))}
-                        </ul>
-            )}
-        </React.Fragment>
+            <ThemeConsumer>
+                {({theme}) => (
+                <React.Fragment>
+                    {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                        karma && 
+                                <ul>
+                                    <li className="nav">
+                                        <h1 style={{marginBottom: "5px"}}>{id}</h1>
+                                        <p className={`subtitle-${theme}`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
+                                        <h1>Posts</h1>
+                                    </li>
+                                    {submitted.map((id) => (
+                                        <News newsID={id} key={id}/>
+                                    ))}
+                                </ul>
+                    )}
+                </React.Fragment>)}
+            </ThemeConsumer>
         )
     }
 }

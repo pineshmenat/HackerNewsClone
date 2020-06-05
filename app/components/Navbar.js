@@ -9,13 +9,15 @@ export default function Navbar() {
     return(
         <ThemeConsumer>
             {({theme, toggleTheme}) => (
-                <ul className="nav">
-                    <li><NavLink  exact activeStyle={activeStyle} className="nav-link" to="/">Top</NavLink></li>
-                    <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/new">New</NavLink></li>
-                    <button onClick={toggleTheme}>
+                <nav className="row space-between">
+                    <ul className="row nav">
+                        <li><NavLink  exact activeStyle={activeStyle} className="nav-link" to="/">Top</NavLink></li>
+                        <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/new">New</NavLink></li>
+                    </ul>
+                    <button className="btn-clear" onClick={toggleTheme}>
                         {(theme === "dark") ? '💡':'🔦'}
                     </button>
-                </ul>
+                </nav>
             )}
         </ThemeConsumer>
     )

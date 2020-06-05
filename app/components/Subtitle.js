@@ -2,9 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-export default function Subtitle({id, by, time, descendants}) {
+export default function Subtitle({id, by, time, descendants, theme}) {
     return(
-        <p className="subtitle">
+        <div className={`subtitle-${theme}`}>
             {"by "}
             <Link to={{
                 pathname: "/user",
@@ -19,7 +19,7 @@ export default function Subtitle({id, by, time, descendants}) {
             }}>
                 {`${descendants}`}
             </Link>{` comments`}
-        </p>
+        </div>
     )
 }
 
@@ -27,5 +27,6 @@ Subtitle.propTypes = {
     id: PropTypes.number.isRequired,
     by: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
+    theme: PropTypes.string.isRequired,
     descendants: PropTypes.number
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import News from './News'
 import {fetchNewsIDsByType} from '../util/api.js'
 
-export default class TopNews extends React.Component {
+export default class NewsList extends React.Component {
     state = {
         newsIDs: [],
         isLoading: true,

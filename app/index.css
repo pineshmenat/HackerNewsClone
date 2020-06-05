@@ -6,129 +6,86 @@ body,
 }
 
 body {
+    min-width: 665px;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif, "Open Sans";
 }
 
 .container {
-    width: 1200px;
+    width: 70%;
     margin: 0 auto;
-    padding: 50px;
+    padding: 40px 20px;
 }
 
 .dark {
+    background: #1c2022;
+}
+
+.row {
+    display: flex;
+}
+.space-between {
+    justify-content: space-between;
+}
+.nav {
+    list-style-type: none;
+}
+
+.nav li {
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;    
+}
+
+.dark{
     color: #DADADA;
     background: #1c2022;
     min-height: 100%;
 }
 
-.news {
-    margin: 0 auto;
+.dark a {
+    color: rgb(203, 203, 203);;
 }
 
-
-.post-title {
-    color: rgb(187, 46, 31);
-    margin-bottom: 20px;
-    list-style-type: none;
-}
-
-.post-title a {
-    text-decoration: none;
-}
-
-.user-title {
-    list-style-type: none;
-}
-
-.user-title > h2{
-    margin: 0;
-    list-style-type: none;
-}
-
-.h2 {
-    font-size: xx-large;
-    margin-bottom: 0px;
-}
-
-.light {
-    color: rgb(187, 46, 31);
-}
-
-.dark {
-    color: honeydew;
-}
-
-.h2, .title > a {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.title {
-    margin: 0 auto;
-}
-
-.subtitle {
-    color: gray;
-    margin: 0 auto 10px;
-}
-
-.subtitle-light-a {
-    color: black;
-}
-
-.subtitle-dark-a {
-    color: gray;
-}
-
-.nav {
-    list-style-type: none;
-    font-weight: bold;
-    font-size: larger;
-    color: rgb(187, 46, 31);
-    padding-inline-start: 40px;
-    margin: 0 0 50px;
-    position: relative;
-}
-
-.nav > li {
-    list-style-type: none;
-    display: inline;
-    margin: 0 10px 0 0;
-}
-
-.news-li {
-    list-style-type: none;
-    margin-bottom: 20px;
-}
-
-.nav button {
-    position: absolute;
-    right: 10px;
-    font-size: 30px;
-    border: none;
+.btn-clear {
     background: transparent;
+    border: none;
+    font-size: 30px;
 }
 
-.nav-link {
+.news {
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.link {
+    color: rgb(187, 46, 31);
     text-decoration: none;
+    font-weight: bold;
+}
+
+.subtitle-light {
+    margin-top: 5px;
+    color: gray;
+}
+
+.subtitle-light a {
     color: black;
 }
 
-.nav-li {
-    list-style-type: none;
+.subtitle-dark {
+    margin-top: 5px;
+    color: gray;
 }
 
 .comment {
+    list-style-type: none;
     background: rgba(128, 128, 128, 0.1411764705882353);
-    padding: 10px;
-    margin-bottom: 10px;
     border-radius: 5px;
-}
-
-.light {
-    color: black;
-}
-
-.dark {
-    color: gray;
+    padding: 10px;
+    margin: 10px 0;
 }
