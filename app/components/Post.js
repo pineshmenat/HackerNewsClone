@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import queryString from 'query-string'
 import {fetchNewsById} from '../util/api'
 import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
 import {ThemeConsumer} from '../context/theme'
-export default class Post extends React.Component {
-    state = {
+export default function Post (props){
+    const [state, setState] = useState({
         id: null,
         url: null,
         title: null,
@@ -16,30 +16,33 @@ export default class Post extends React.Component {
         kids: [],
         isLoading: true,
         error: null
-    }
+    });
 
-    componentDidMount() {
-        const {id} = queryString.parse(this.props.location.search);
+    useEffect(() => {
+        const {id} = queryString.parse(props.location.search);
         console.log("POST:  id: ", id);
         fetchNewsById(id)
         .then(({id, url, title, by, time, kids, descendants}) => {
-            this.setState({
-                id,
-                url,
-                title,
-                by,
-                time: formatDate(time),
-                descendants: descendants,
-                kids,
-                isLoading: false
+            setState((prevState) => {
+                return {
+                    ...prevState,
+                    id,
+                    url,
+                    title,
+                    by,
+                    time: formatDate(time),
+                    descendants: descendants,
+                    kids,
+                    isLoading: false
+                }
             })
         })
-        .catch((error) => this.setState({error, isLoading: false}))
+        .catch((error) => setState((prevState) => {
+            return {...prevState, error, isLoading: false}
+        }))
+    },[props.location.search]);
 
-    }
-
-    render() {
-        const {id, url, title, by, time, kids, descendants, isLoading, error} = this.state;
+    const {id, url, title, by, time, kids, descendants, isLoading, error} = state;
         return(
             <ThemeConsumer>
             {({theme}) => (
@@ -60,5 +63,4 @@ export default class Post extends React.Component {
             }
         </ThemeConsumer>
         )
-    }
 }

@@ -1,13 +1,12 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {fetchNewsById} from '../util/api'
-import {Link} from 'react-router-dom'
 import Subtitle from './Subtitle'
 import {formatDate} from '../util/helpers'
 import {ThemeConsumer} from '../context/theme'
 
-export default class News extends React.Component {
+export default function News(props) {
 
-    state = {
+    const [state, setState] = useState({
         id: null,
         url: null,
         title: null,
@@ -17,28 +16,36 @@ export default class News extends React.Component {
         type: null,
         isLoading: true,
         error: null
-    }
+    });
 
-    componentDidMount() {
-        const {newsID} = this.props;
+    useEffect(() => {
+        const {newsID} = props;
         fetchNewsById(newsID)
         .then(({id, url, title, by, time, descendants, type}) => {
-            this.setState({
-                id,
-                url,
-                title,
-                by,
-                time: formatDate(time),
-                descendants: descendants,
-                type: type,
-                isLoading: false
-            })
+            setState((prevState) => {
+                return {
+                    ...prevState,
+                    id,
+                    url,
+                    title,
+                    by,
+                    time: formatDate(time),
+                    descendants: descendants,
+                    type: type,
+                    isLoading: false
+                }
+            });
         })
-        .catch((error) => this.setState({error, isLoading: false}))
-    }
+        .catch((error) => setState((prevState) => {
+            return {
+                ...prevState,
+                error, 
+                isLoading: false
+            }
+        }))
+    }, [props.newsID]);
     
-    render() {
-        const {id, url, title, by, time, descendants, type, isLoading, error} = this.state;
+    const {id, url, title, by, time, descendants, type, isLoading, error} = state;
         return(
             (type === "story") && <ThemeConsumer>
                 {({theme}) => (
@@ -53,5 +60,4 @@ export default class News extends React.Component {
                 )}
             </ThemeConsumer>
         )
-    }
 }

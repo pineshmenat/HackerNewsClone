@@ -1,40 +1,33 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import News from './News'
 import {fetchNewsIDsByType} from '../util/api.js'
 
-export default class NewsList extends React.Component {
-    state = {
-        newsIDs: [],
-        isLoading: true,
-        error: null
-    }
+export default function NewsList(props){
+    const [newsIDs, setNewsIDs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    componentDidMount() {
-        this.handlefetch();
-    }
-
-    componentDidUpdate(prevProps) {
-        if(prevProps.type !== this.props.type) this.handlefetch();
-    }
-
-    handlefetch() {
-        const {type} = this.props;
+    useEffect(() => {
+        const {type} = props;
         console.log(type);
         fetchNewsIDsByType(type)
-        .then((newsIDs) => this.setState({newsIDs, isLoading: false}))
-        .catch((error) => this.setState({error, isLoading: false}))
-    }
+        .then((newsIDs) => {
+            setNewsIDs(newsIDs);
+            setIsLoading(false);
+        })
+        .catch((error) => {
+            setError(error);
+            setIsLoading(false);
+        })
+    }, [props.type])
 
-    render() {
-        const {isLoading, error, newsIDs} = this.state;
-        return (
-             <ul>
-                {isLoading === true ? <p>Loading...</p> : (error !== null ? <p>Error!</p> :
-                    newsIDs.map((id) => {
-                        return <News newsID={id} key={id}/>
-                    })  
-                )}
-             </ul>
-        );
-    }
+    return (
+        <ul>
+           {isLoading === true ? <p>Loading...</p> : (error !== null ? <p>Error!</p> :
+               newsIDs.map((id) => {
+                   return <News newsID={id} key={id}/>
+               })  
+           )}
+        </ul>
+   );
 }
