@@ -2,7 +2,7 @@ export function fetchNewsIDsByType(type = 'top') {
     return fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
         .then((res) => res.json())
         .then((ids) => {
-            return ids.slice(0, 50);
+            return ids;
         })
 }
 
@@ -22,13 +22,12 @@ export function fetchCommentsById(commentId) {
         .then((comment) => {
             return comment;
         });
-
 }
 
 export function fetchPostsByUser(userId) {
     return fetch(`https://hacker-news.firebaseio.com/v0/user/${userId}.json?print=pretty`)
     .then((res) => res.json())
-    .then(({id, karma, submitted, created}) => {
-        return (submitted.length > 0) ? {id, karma, created, submitted: submitted.slice(0,50)}: {id, karma, created, submitted: submitted};
+    .then((userData) => {
+        return userData;
     });
 }

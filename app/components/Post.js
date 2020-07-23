@@ -5,6 +5,8 @@ import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
 import ThemeContext from '../context/theme'
+import {useOnScrollBottom} from '../util/helpers';
+
 export default function Post (props){
     const [state, setState] = useState({
         id: null,
@@ -44,6 +46,8 @@ export default function Post (props){
     const {theme} = useContext(ThemeContext);
 
     const {id, url, title, by, time, kids, descendants, isLoading, error} = state;
+    const {limitedIDs, hasMore} = useOnScrollBottom(error, isLoading, kids);
+
         return(
             isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
                 title && 
@@ -53,9 +57,10 @@ export default function Post (props){
                         <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                     </li>
                     <p></p>
-                    {kids.map((id) => (
+                    {limitedIDs.map((id) => (
                         <Comment id={id} key={id}/>
                     ))}
+                    {!hasMore && <div>You reached the end! That's all Comments I have for now! 🔚</div> }
                 </ul>
             )
         )

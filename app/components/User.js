@@ -4,6 +4,7 @@ import {fetchPostsByUser} from '../util/api'
 import {formatDate} from '../util/helpers'
 import News from './News'
 import ThemeContext from '../context/theme'
+import {useOnScrollBottom} from '../util/helpers';
 
 export default function User(props) {
     const [state, setState] = useState({
@@ -36,6 +37,7 @@ export default function User(props) {
     const {theme} = useContext(ThemeContext);
 
     const {id, karma, submitted, created, isLoading, error} = state;
+    const {limitedIDs, hasMore} = useOnScrollBottom(error, isLoading, submitted);
         return(
             <div>
                 {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
@@ -46,9 +48,10 @@ export default function User(props) {
                                 <p className={`subtitle-${theme}`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
                                 <h1>Posts</h1>
                             </li>
-                            {submitted.map((id) => (
+                            {limitedIDs.map((id) => (
                                 <News newsID={id} key={id}/>
                             ))}
+                            {!hasMore && <div>You did it! You reached the end! That's all Posts I have for now! 🔚</div> }
                         </ul>
             )}
             </div>

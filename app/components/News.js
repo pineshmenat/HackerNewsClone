@@ -19,8 +19,7 @@ export default function News(props) {
     });
 
     useEffect(() => {
-        const {newsID} = props;
-        fetchNewsById(newsID)
+        fetchNewsById(props.newsID)
         .then(({id, url, title, by, time, descendants, type}) => {
             setState((prevState) => {
                 return {
