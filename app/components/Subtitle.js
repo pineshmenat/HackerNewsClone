@@ -17,7 +17,7 @@ export default function Subtitle({id, by, time, descendants, theme}) {
                 pathname: "/post",
                 search: `?id=${id}`
             }}>
-                {`${descendants}`}
+                {`${descendants ? descendants: 0}`}
             </Link>{` comments`}
         </div>
     )

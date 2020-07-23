@@ -53,9 +53,9 @@ export default function Post (props){
                         <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                     </li>
                     <p></p>
-                    {kids.map((id) => (
+                    {kids ? kids.map((id) => (
                         <Comment id={id} key={id}/>
-                    ))}
+                    )) : null}
                 </ul>
             )
         )
