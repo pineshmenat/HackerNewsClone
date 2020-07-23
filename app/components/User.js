@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import queryString from 'query-string'
 import {fetchPostsByUser} from '../util/api'
 import {formatDate} from '../util/helpers'
 import News from './News'
-import {ThemeConsumer} from '../context/theme'
+import ThemeContext from '../context/theme'
 
 export default function User(props) {
     const [state, setState] = useState({
@@ -33,27 +33,24 @@ export default function User(props) {
         .catch((error) => setState((prevState) => {return {...prevState, error, isLoading: false}}))
     }, [props.location.search])
 
+    const {theme} = useContext(ThemeContext);
+
     const {id, karma, submitted, created, isLoading, error} = state;
-        console.log(submitted);
         return(
-            <ThemeConsumer>
-                {({theme}) => (
-                    <React.Fragment>
-                        {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                            karma && 
-                                    <ul>
-                                        <li className="nav">
-                                            <h1 style={{marginBottom: "5px"}}>{id}</h1>
-                                            <p className={`subtitle-${theme}`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
-                                            <h1>Posts</h1>
-                                        </li>
-                                        {submitted.map((id) => (
-                                            <News newsID={id} key={id}/>
-                                        ))}
-                                    </ul>
-                        )}
-                    </React.Fragment>
-                )}
-            </ThemeConsumer>
+            <div>
+                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                karma && 
+                        <ul>
+                            <li className="nav">
+                                <h1 style={{marginBottom: "5px"}}>{id}</h1>
+                                <p className={`subtitle-${theme}`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
+                                <h1>Posts</h1>
+                            </li>
+                            {submitted.map((id) => (
+                                <News newsID={id} key={id}/>
+                            ))}
+                        </ul>
+            )}
+            </div>
         )
 }

@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {fetchNewsById} from '../util/api'
 import Subtitle from './Subtitle'
 import {formatDate} from '../util/helpers'
-import {ThemeConsumer} from '../context/theme'
+import ThemeContext from '../context/theme'
 
 export default function News(props) {
 
@@ -44,20 +44,19 @@ export default function News(props) {
             }
         }))
     }, [props.newsID]);
+
+    const {theme} = useContext(ThemeContext);
     
     const {id, url, title, by, time, descendants, type, isLoading, error} = state;
         return(
-            (type === "story") && <ThemeConsumer>
-                {({theme}) => (
-                    <React.Fragment>
-                        {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                            <li className="news">
-                                <a className="link" target="_blank" href={url}>{title}</a>
-                                <Subtitle id={id} by={by} time={time} descendants={descendants} theme={theme}/>
-                            </li>
-                        )}
-                    </React.Fragment>
+            (type === "story") &&
+            <React.Fragment>
+                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                    <li className="news">
+                        <a className="link" target="_blank" href={url}>{title}</a>
+                        <Subtitle id={id} by={by} time={time} descendants={descendants} theme={theme}/>
+                    </li>
                 )}
-            </ThemeConsumer>
+            </React.Fragment>
         )
 }

@@ -25,7 +25,7 @@ export default function Subtitle({id, by, time, descendants, theme}) {
 
 Subtitle.propTypes = {
     id: PropTypes.number.isRequired,
-    by: PropTypes.string.isRequired,
+    by: PropTypes.string,
     time: PropTypes.string.isRequired,
     theme: PropTypes.string.isRequired,
     descendants: PropTypes.number

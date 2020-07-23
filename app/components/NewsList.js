@@ -8,9 +8,7 @@ export default function NewsList(props){
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const {type} = props;
-        console.log(type);
-        fetchNewsIDsByType(type)
+        fetchNewsIDsByType(props.type)
         .then((newsIDs) => {
             setNewsIDs(newsIDs);
             setIsLoading(false);

@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import queryString from 'query-string'
 import {fetchNewsById} from '../util/api'
 import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
-import {ThemeConsumer} from '../context/theme'
+import ThemeContext from '../context/theme'
 export default function Post (props){
     const [state, setState] = useState({
         id: null,
@@ -20,7 +20,6 @@ export default function Post (props){
 
     useEffect(() => {
         const {id} = queryString.parse(props.location.search);
-        console.log("POST:  id: ", id);
         fetchNewsById(id)
         .then(({id, url, title, by, time, kids, descendants}) => {
             setState((prevState) => {
@@ -40,27 +39,24 @@ export default function Post (props){
         .catch((error) => setState((prevState) => {
             return {...prevState, error, isLoading: false}
         }))
-    },[props.location.search]);
+    },[]);
+
+    const {theme} = useContext(ThemeContext);
 
     const {id, url, title, by, time, kids, descendants, isLoading, error} = state;
         return(
-            <ThemeConsumer>
-            {({theme}) => (
-                isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                    title && 
-                    <ul>
-                        <li className="nav">
-                            <h1 style={{marginBottom: "5px"}}><a className="link" target="_blank" href={url}>{title}</a></h1>
-                            <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
-                        </li>
-                        <p></p>
-                        {kids.map((id) => (
-                            <Comment id={id} key={id}/>
-                        ))}
-                    </ul>
-                )
+            isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                title && 
+                <ul>
+                    <li className="nav">
+                        <h1 style={{marginBottom: "5px"}}><a className="link" target="_blank" href={url}>{title}</a></h1>
+                        <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
+                    </li>
+                    <p></p>
+                    {kids.map((id) => (
+                        <Comment id={id} key={id}/>
+                    ))}
+                </ul>
             )
-            }
-        </ThemeConsumer>
         )
 }
