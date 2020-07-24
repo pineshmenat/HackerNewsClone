@@ -4,7 +4,7 @@ import {fetchPostsByUser} from '../util/api'
 import {formatDate} from '../util/helpers'
 import News from './News'
 import ThemeContext from '../context/theme'
-import {useOnScrollBottom} from '../util/helpers';
+import {useOnScrollBottom} from '../custom-hooks/custom-hooks';
 
 export default function User(props) {
     const [state, setState] = useState({
@@ -31,7 +31,7 @@ export default function User(props) {
                 };
             })
         })
-        .catch((error) => setState((prevState) => {return {...prevState, error, isLoading: false}}))
+        .catch((error) => setState((prevState) => ({...prevState, error, isLoading: false})))
     }, [props.location.search])
 
     const {theme} = useContext(ThemeContext);
