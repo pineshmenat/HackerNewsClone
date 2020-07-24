@@ -57,9 +57,9 @@ export default function Post (props){
                         <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                     </li>
                     <p></p>
-                    {limitedIDs.map((id) => (
+                    {limitedIDs ? limitedIDs.map((id) => (
                         <Comment id={id} key={id}/>
-                    ))}
+                    )) : null}
                     {!hasMore && <div>You reached the end! That's all Comments I have for now! 🔚</div> }
                 </ul>
             )

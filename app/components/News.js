@@ -48,7 +48,7 @@ export default function News(props) {
     
     const {id, url, title, by, time, descendants, type, isLoading, error} = state;
         return(
-            (type === "story") &&
+            (type === "story" || type === "job") &&
             <React.Fragment>
                 {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
                     <li className="news">

@@ -12,6 +12,10 @@ export default function Navbar() {
             <ul className="row nav">
                 <li><NavLink  exact activeStyle={activeStyle} className="nav-link" to="/">Top</NavLink></li>
                 <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/new">New</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/best">Best</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/ask">Ask</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/show">Show</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/job">Job</NavLink></li>
             </ul>
             <button className="btn-clear" onClick={toggleTheme}>
                 {(theme === "dark") ? '🔆':'🌙'}
