@@ -1,6 +1,7 @@
 import React from 'react'
 import News from './News'
-import {useFetchNewsIDs, useOnScrollBottom} from '../custom-hooks/custom-hooks';
+import useFetchNewsIDs from '../custom-hooks/useFetchNewsIDs';
+import useOnScrollBottom from '../custom-hooks/useOnScrollBottom';
 
 export default function NewsList(props){
     const {newsIDs, isLoading, error} = useFetchNewsIDs(props.type);

@@ -5,7 +5,7 @@ import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
 import ThemeContext from '../context/theme'
-import {useOnScrollBottom} from '../custom-hooks/custom-hooks';
+import useOnScrollBottom from '../custom-hooks/useOnScrollBottom';
 
 export default function Post (props){
     const [state, setState] = useState({

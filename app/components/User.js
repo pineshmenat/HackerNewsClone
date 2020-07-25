@@ -4,7 +4,7 @@ import {fetchPostsByUser} from '../util/api'
 import {formatDate} from '../util/helpers'
 import News from './News'
 import ThemeContext from '../context/theme'
-import {useOnScrollBottom} from '../custom-hooks/custom-hooks';
+import useOnScrollBottom from '../custom-hooks/useOnScrollBottom';
 
 export default function User(props) {
     const [state, setState] = useState({
