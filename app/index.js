@@ -11,7 +11,7 @@ const Post = React.lazy(() => import('./components/Post'));
 const User = React.lazy(()=> import('./components/User'));
 
 function App(){
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState("dark");
 
     const toggleTheme = () => {
         setTheme((theme) => (theme === "light" ? "dark" : "light") );
