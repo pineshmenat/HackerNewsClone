@@ -16,10 +16,6 @@ body {
     padding: 40px 20px;
 }
 
-.dark {
-    background: #051736;
-}
-
 .row {
     display: flex;
 }
@@ -44,7 +40,7 @@ body {
 
 .dark{
     color: #DADADA;
-    background: #051736;
+    background: #010101;
     min-height: 100%;
 }
 
@@ -85,7 +81,7 @@ body {
 
 .comment {
     list-style-type: none;
-    background: rgba(128, 128, 128, 0.1411764705882353);
+    background: rgba(128, 128, 128, 0.19);
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
