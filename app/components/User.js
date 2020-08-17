@@ -43,7 +43,7 @@ export default function User(props) {
                 {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
                 karma && 
                         <ul>
-                            <li className="nav">
+                            <li>
                                 <h1 className="text-3xl font-bold mb-1">Posts by {id}</h1>
                                 <p className={`subtitle-${theme} mt-1 mb-10 text-gray-600 text`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
                             </li>
