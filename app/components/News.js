@@ -51,8 +51,8 @@ export default function News(props) {
             (type === "story" || type === "job") &&
             <React.Fragment>
                 {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                    <li className="news">
-                        <a className="link" target="_blank" href={url}>{title}</a>
+                    <li className="list-none my-5 mx-0">
+                        <a className="no-underline font-bold text-red-700" target="_blank" href={url}>{title}</a>
                         <Subtitle id={id} by={by} time={time} descendants={descendants} theme={theme}/>
                     </li>
                 )}

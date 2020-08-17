@@ -44,9 +44,8 @@ export default function User(props) {
                 karma && 
                         <ul>
                             <li className="nav">
-                                <h1 style={{marginBottom: "5px"}}>{id}</h1>
-                                <p className={`subtitle-${theme}`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
-                                <h1>Posts</h1>
+                                <h1 className="text-3xl font-bold mb-1">Posts by {id}</h1>
+                                <p className={`subtitle-${theme} mt-1 mb-10 text-gray-600 text`}>{`joined`} <b>{created}</b> {`has`} <b>{karma}</b> {`karma`}</p>
                             </li>
                             {limitedIDs.map((id) => (
                                 <News newsID={id} key={id}/>
