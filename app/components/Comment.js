@@ -38,10 +38,10 @@ export default function Comment(props) {
     return(
         <React.Fragment>
             {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-                <li className="comment">
-                    <div className={`subtitle-${theme}`}>
+                <li className="list-none rounded p-3 my-3 mx-0 bg-gray-500 bg-opacity-25">
+                    <div className={`subtitle-${theme} mt-1 text-gray-600 text`}>
                         {"by "}
-                        <Link to={{
+                        <Link className="underline" to={{
                             pathname: "/user",
                             search: `?id=${by}`
                         }}>
@@ -49,7 +49,7 @@ export default function Comment(props) {
                         </Link>
                         {` on ${time}`}
                     </div>
-                    <p dangerouslySetInnerHTML={{__html: text}}></p>
+                    <p className="my-2" dangerouslySetInnerHTML={{__html: text}}></p>
                 </li>
             )}
         </React.Fragment>

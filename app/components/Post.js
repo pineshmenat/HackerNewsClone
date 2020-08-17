@@ -52,8 +52,8 @@ export default function Post (props){
             isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
                 title && 
                 <ul>
-                    <li className="nav">
-                        <h1 style={{marginBottom: "5px"}}><a className="link" target="_blank" href={url}>{title}</a></h1>
+                    <li className="list-none my-5 mx-0">
+                        <h1 className="text-3xl font-semibold mb-1"><a className="no-underline font-bold text-red-700" target="_blank" href={url}>{title}</a></h1>
                         <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                     </li>
                     <p></p>

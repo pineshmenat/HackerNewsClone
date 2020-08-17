@@ -8,16 +8,16 @@ const activeStyle = {
 export default function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext);
     return(
-        <nav className="row space-between">
-            <ul className="row nav">
-                <li><NavLink  exact activeStyle={activeStyle} className="nav-link" to="/">🔝 Top</NavLink></li>
-                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/new">🆕 New</NavLink></li>
-                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/best">🌟 Best</NavLink></li>
-                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/ask">🙋‍♂️ Ask</NavLink></li>
-                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/show">📢 Show</NavLink></li>
-                <li><NavLink activeStyle={activeStyle}  className="nav-link" to="/job">📭 Jobs</NavLink></li>
+        <nav className="flex justify-between">
+            <ul className="flex list-none">
+                <li><NavLink  exact activeStyle={activeStyle} className="no-underline mr-3 font-bold text-lg" to="/">🔝 Top</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="no-underline mr-3 font-bold text-lg" to="/new">🆕 New</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="no-underline mr-3 font-bold text-lg" to="/best">🌟 Best</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="no-underline mr-3 font-bold text-lg" to="/ask">🙋‍♂️ Ask</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="no-underline mr-3 font-bold text-lg" to="/show">📢 Show</NavLink></li>
+                <li><NavLink activeStyle={activeStyle}  className="no-underline mr-3 font-bold text-lg" to="/job">📭 Jobs</NavLink></li>
             </ul>
-            <button className="btn-clear" onClick={toggleTheme}>
+            <button className="bg-transparent rounded-none text-3xl" onClick={toggleTheme}>
                 {(theme === "dark") ? '🔆':'🌙'}
             </button>
         </nav>

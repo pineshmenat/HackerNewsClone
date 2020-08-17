@@ -1,3 +1,10 @@
+@tailwind preflight;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* Custom css */
 html,
 body,
 #app {

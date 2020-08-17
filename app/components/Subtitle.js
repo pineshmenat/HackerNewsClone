@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 
 export default function Subtitle({id, by, time, descendants, theme}) {
     return(
-        <div className={`subtitle-${theme}`}>
+        <div className={`subtitle-${theme} mt-1 text-gray-600 text`}>
             {"by "}
-            <Link to={{
+            <Link className={`underline`} to={{
                 pathname: "/user",
                 search: `?id=${by}`
             }}>
                 {by}
             </Link>
             {` on ${time} with `}
-            <Link to={{
+            <Link className={`underline`} to={{
                 pathname: "/post",
                 search: `?id=${id}`
             }}>
