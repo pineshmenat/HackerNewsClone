@@ -21,7 +21,7 @@ function App(){
         <Router>
         <ThemeContext.Provider value={{theme, toggleTheme}}>
             <div className={`${theme} m-0 font-sans`}>
-                <div className="xl:max-w-6xl my-0 mx-auto py-10 px-5">
+                <div className="xl:max-w-6xl md:max-w-4xl sm:max-w-2xl my-0 mx-auto py-10 px-5">
                         <Navbar/>
                         <React.Suspense fallback={<p>Loading...</p>}>
                             <Switch>
