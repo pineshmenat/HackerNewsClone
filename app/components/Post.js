@@ -56,7 +56,6 @@ export default function Post (props){
                         <h1 className="text-3xl font-semibold mb-1"><a className="no-underline font-bold text-red-700" target="_blank" href={url}>{title}</a></h1>
                         <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
                     </li>
-                    <p></p>
                     {limitedIDs ? limitedIDs.map((id) => (
                         <Comment id={id} key={id}/>
                     )) : null}
