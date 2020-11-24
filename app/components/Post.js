@@ -4,7 +4,6 @@ import {fetchNewsById} from '../util/api'
 import Subtitle from './Subtitle'
 import Comment from './Comment'
 import {formatDate} from '../util/helpers'
-import ThemeContext from '../context/theme'
 import useOnScrollBottom from '../custom-hooks/useOnScrollBottom';
 
 export default function Post (props){
@@ -43,8 +42,6 @@ export default function Post (props){
         }))
     },[]);
 
-    const {theme} = useContext(ThemeContext);
-
     const {id, url, title, by, time, kids, descendants, isLoading, error} = state;
     const {limitedIDs, hasMore} = useOnScrollBottom(error, isLoading, kids);
 
@@ -53,8 +50,8 @@ export default function Post (props){
                 title && 
                 <ul>
                     <li className="list-none my-5 mx-0">
-                        <h1 className="text-3xl font-semibold mb-1"><a className="no-underline font-bold text-red-700" target="_blank" href={url}>{title}</a></h1>
-                        <Subtitle theme={theme} id={id} by={by} time={time} descendants={descendants}/>
+                        <h1 className="text-3xl mb-1"><a className="no-underline font-bold dark:text-gray-300 text-red-700" target="_blank" href={url}>{title}</a></h1>
+                        <Subtitle id={id} by={by} time={time} descendants={descendants}/>
                     </li>
                     {limitedIDs ? limitedIDs.map((id) => (
                         <Comment id={id} key={id}/>
