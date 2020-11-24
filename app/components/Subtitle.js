@@ -2,18 +2,18 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-export default function Subtitle({id, by, time, descendants, theme}) {
+export default function Subtitle({id, by, time, descendants}) {
     return(
-        <div className={`subtitle-${theme} mt-1 text-gray-600 text`}>
+        <div className={`mt-1 text-gray-500 text`}>
             {"by "}
-            <Link className={`underline`} to={{
+            <Link className={`underline dark:text-gray-300 text-gray-900`} to={{
                 pathname: "/user",
                 search: `?id=${by}`
             }}>
                 {by}
             </Link>
             {` on ${time} with `}
-            <Link className={`underline`} to={{
+            <Link className={`underline dark:text-gray-300 text-gray-900`} to={{
                 pathname: "/post",
                 search: `?id=${id}`
             }}>
@@ -27,6 +27,5 @@ Subtitle.propTypes = {
     id: PropTypes.number.isRequired,
     by: PropTypes.string,
     time: PropTypes.string.isRequired,
-    theme: PropTypes.string.isRequired,
     descendants: PropTypes.number
 }
