@@ -3,16 +3,23 @@ import {fetchCommentsById} from '../util/api'
 import {Link} from 'react-router-dom'
 import {formatDate} from '../util/helpers'
 
+interface CommentState {
+    by: string,
+    id: number,
+    text: string,
+    time: string,
+    isLoading: boolean,
+    error: Error | null
+}
+
 export default function Comment({id}: {id: number }) {
-    const [state, setState] = useState({
+    const [state, setState] = useState<CommentState>({
         by: "",
         id: 0,
         text: "",
         time: "",
         isLoading: true,
-        error: {
-            message: ""
-        }
+        error: null
     });
 
     useEffect(() => {

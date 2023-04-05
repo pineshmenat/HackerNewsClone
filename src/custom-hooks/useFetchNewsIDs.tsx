@@ -4,7 +4,7 @@ import {fetchNewsIDsByType} from '../util/api'
 export default function useFetchNewsIDs(type: string) {
     const [newsIDs, setNewsIDs] = useState<number[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState({});
+    const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         fetchNewsIDsByType(type)
@@ -12,8 +12,8 @@ export default function useFetchNewsIDs(type: string) {
             setNewsIDs(newsIDs);
             setIsLoading(false);
         })
-        .catch((error: {}) => {
-            setError(error);
+        .catch((error: Error) => {
+            if(error instanceof Error)setError(error);
             setIsLoading(false);
         })
     }, [type]);

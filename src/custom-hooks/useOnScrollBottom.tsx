@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {debounce} from "lodash";
 import {getDocHeight} from '../util/helpers';
 
-export default function useOnScrollBottom(error: {}, isLoading: boolean, allIDs: number[]) {
+export default function useOnScrollBottom(error: Error | null, isLoading: boolean, allIDs: number[]) {
     const [limitedIDs, setLimitedNewsIDs] = useState(allIDs.slice(0, 20));
     const [hasMore, setHasMore] = useState(true);
 

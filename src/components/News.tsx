@@ -7,9 +7,21 @@ interface NewsProps {
     newsID: number
 }
 
+interface NewsState {
+    id: number,
+    url: string,
+    title: string,
+    by: string,
+    time: string,
+    descendants: number,
+    type: string,
+    isLoading: boolean,
+    error: Error | null
+}
+
 export default function News(props: NewsProps) {
 
-    const [state, setState] = useState({
+    const [state, setState] = useState<NewsState>({
         id: 0,
         url: "",
         title: "",
@@ -18,9 +30,7 @@ export default function News(props: NewsProps) {
         descendants: 0,
         type: "",
         isLoading: true,
-        error: {
-            message: ""
-        }
+        error: null
     });
 
     useEffect(() => {

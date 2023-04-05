@@ -12,8 +12,20 @@ interface PostProps {
     }
 }
 
+interface PostState {
+  id: number,
+  url: string,
+  title: string,
+  by: string,
+  time: string,
+  descendants: number,
+  kids: number[],
+  isLoading: boolean,
+  error: Error | null
+}
+
 export default function Post(props: PostProps){
-    const [state, setState] = useState({
+    const [state, setState] = useState<PostState>({
         id: 0,
         url: "",
         title: "",
@@ -22,15 +34,12 @@ export default function Post(props: PostProps){
         descendants: 0,
         kids: [0],
         isLoading: true,
-        error: {
-            message: ""
-        }
+        error: null
     });
 
     useEffect(() => {
         const {id} = queryString.parse(props.location.search);
-        if(typeof id !== "number") return;
-        fetchNewsById(id)
+        fetchNewsById(Number(id))
         .then(({id, url, title, by, time, kids, descendants}) => {
             setState((prevState) => ({
                 ...prevState,
@@ -44,17 +53,16 @@ export default function Post(props: PostProps){
                 isLoading: false
             }))
         })
-        .catch((error) => setState((prevState) => {
+        .catch((error: Error) => setState((prevState) => {
             return {...prevState, error, isLoading: false}
         }))
     },[props.location.search]);
 
     const {id, url, title, by, time, kids, descendants, isLoading, error} = state;
     const {limitedIDs, hasMore} = useOnScrollBottom(error, isLoading, kids);
-
         return (
           <>
-            isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+            {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
             title &&
             <ul>
               <li className="list-none my-5 mx-0">
@@ -84,7 +92,7 @@ export default function Post(props: PostProps){
                 </div>
               )}
             </ul>
-            )
+            )}
           </>
         );
 }

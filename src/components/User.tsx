@@ -11,16 +11,23 @@ interface UserProps {
     }
 }
 
+interface UserState {
+    created : string,
+    id : number,
+    karma : string,
+    submitted : number[],
+    isLoading: boolean,
+    error: Error | null
+}
+
 export default function User(props: UserProps) {
-    const [state, setState] = useState({
+    const [state, setState] = useState<UserState>({
         created : "",
         id : 0,
         karma : "",
         submitted : [0],
         isLoading: true,
-        error: {
-            message: ""
-        }
+        error: null
       });
 
     useEffect(()=> {
@@ -44,7 +51,7 @@ export default function User(props: UserProps) {
     const {limitedIDs, hasMore} = useOnScrollBottom(error, isLoading, submitted);
         return(
             <div>
-                {isLoading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+                {isLoading ? <p>Loading...</p> : error ? <p>{error instanceof Error ? error.message:"Error"}</p> : (
                     karma && 
                         <ul>
                             <li className="list-none my-5 mx-0">
