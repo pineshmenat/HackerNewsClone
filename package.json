@@ -1,53 +1,51 @@
 {
   "name": "hackernews",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "webpack-dev-server",
-    "build": "set NODE_ENV=production && webpack"
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.18",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-router-dom": "^5.3.3",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.12.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      "syntax-dynamic-import"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
-    "autoprefixer": "^10.0.2",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "copy-webpack-plugin": "^6.3.2",
-    "css-loader": "^5.0.1",
-    "html-webpack-plugin": "^4.3.0",
-    "lodash.debounce": "^4.0.8",
-    "mini-css-extract-plugin": "^0.10.0",
-    "postcss-cli": "^8.3.0",
-    "postcss-loader": "^4.1.0",
-    "style-loader": "^1.2.1",
-    "tailwindcss": "^2.0.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "query-string": "^6.12.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
-    "react-router-dom": "^5.1.2"
+    "@types/lodash": "^4.14.192",
+    "tailwindcss": "^3.2.7"
   }
 }
